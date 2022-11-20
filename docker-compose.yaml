@@ -1,8 +1,6 @@
-version: '3.9'
-
 services:
   mongo:
-    image: mongo:6.0.2
+    image: mongo:6
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-aesirx}
@@ -16,6 +14,7 @@ services:
   aesirx-analytics:
     image: aesirxio/analytics-1stparty:develop
     restart: always
+    pull_policy: always
     ports:
       - protocol: tcp
         published: 80
