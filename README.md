@@ -18,12 +18,12 @@ You can also specify your own MongoDB server for storing analytics.  MongoDB 6.x
 ## Instructions for setting up
 
 1. Clone the `aesirx-1stparty.env.dist` file into `aesirx-1stparty.env` and customize
-  * You can choose not to customize anything.
-  * If you have a separate MongoDB server, you can specify the credentials using the following variables:
-    * DBUSER
-    * DBPASS
-    * DBHOST
-    * DBPORT
-    * DBNAME
-  * You can choose to change the HTTP_PORT variable (default 80), which is the port that your 1st party server will listen to.
+    * You can choose not to customize anything.
+    * If you have a separate MongoDB server, you can specify the credentials using the following variables:
+        * DBUSER
+        * DBPASS
+        * DBHOST
+        * DBPORT
+        * DBNAME
+    * You can choose to change the HTTP_PORT variable (default 80), which is the port that your 1st party server will listen to.
 1. Execute `docker compose up -d` to run the full setup, including the MongoDB server.
