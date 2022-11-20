@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:6.0.2
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-aesirx}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-1stparty}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-aesirxanalytics}
+    volumes:
+      - type: volume
+        source: mongo
+        target: /data/db
+
+  aesirx-analytics:
+    image: aesirxio/analytics-1stparty:develop
+    restart: always
+    ports:
+      - protocol: tcp
+        published: 80
+        target: 80
+    volumes:
+      - type: bind
+        source: ./aesirx-1stparty.env
+        target: /.env
+
+volumes:
+  mongo: {}
