@@ -14,8 +14,9 @@ services:
       - backend
 
   aesirx-analytics:
-    image: aesirxio/analytics-1stparty:1.0.0
+    image: aesirxio/analytics-1stparty:develop
     restart: always
+    pull_policy: always
     volumes:
       - type: bind
         source: ./aesirx-1stparty.env
