@@ -2,6 +2,10 @@ services:
   mongo:
     image: mongo:6
     restart: always
+    ports:
+      - protocol: tcp
+        published: ${MONGO_PORT}
+        target: 27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-aesirx}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-1stparty}
@@ -29,7 +33,7 @@ services:
     restart: always
     ports:
       - protocol: tcp
-        published: 80
+        published: ${HTTP_PORT}
         target: 80
     volumes:
       - type: bind
