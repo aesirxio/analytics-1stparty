@@ -14,7 +14,7 @@ services:
       - backend
 
   aesirx-analytics:
-    image: aesirxio/analytics-1stparty:develop
+    image: aesirxio/analytics-1stparty:latest
     restart: always
     pull_policy: always
     volumes:
@@ -23,27 +23,24 @@ services:
         target: /.env
     networks:
       - backend
-  
+
   nginx:
     image: nginx:alpine
-    restart: always
     ports:
-      - protocol: tcp
-        published: 80
-        target: 80
+      - "80:80"
+      - "443:443"
+    restart: always
     volumes:
-      - type: bind
-        source: ./proxy.conf
-        target: /etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ${SSL_CRT}:/etc/nginx/ssl.crt
+      - ${SSL_KEY}:/etc/nginx/ssl.key
+      - ./logs:/var/log/nginx
     networks:
-      - frontend
       - backend
 
 volumes:
   mongo: {}
 
 networks:
-  frontend:
-    driver: bridge
   backend:
     driver: bridge
