@@ -44,5 +44,6 @@ aesirx-1stparty.env
 settings.json
 .env
 certs/*
-logs/*
+nginx/logs/*
+data/*
 
