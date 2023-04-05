@@ -25,6 +25,7 @@ sftp-config.json
 
 # Config
 aesirx-1stparty.env
+.env
 
 # Temp files
 *.tmp

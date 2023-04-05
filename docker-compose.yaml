@@ -9,7 +9,7 @@ services:
     volumes:
       - ./data/db:/data/db
     ports:
-      - 27017:27017
+      - ${MONGO_PORT-27017}:27017
     networks:
       - backend
 
@@ -26,14 +26,14 @@ services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - "${HTTP_PORT-80}:80"
       - "443:443"
     restart: always
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/logs:/var/log/nginx
-      - ${SSL_CRT}:/etc/nginx/ssl.crt
-      - ${SSL_KEY}:/etc/nginx/ssl.key
+      - ${SSL_CRT-./certs/ssl.crt}:/etc/nginx/ssl.crt
+      - ${SSL_KEY-./certs/ssl.key}:/etc/nginx/ssl.key
     networks:
       - backend
 
