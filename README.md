@@ -25,5 +25,13 @@ You can also specify your own MongoDB server for storing analytics.  MongoDB 6.x
         * DBHOST
         * DBPORT
         * DBNAME
-    * You can choose to change the HTTP_PORT variable (default 80), which is the port that your 1st party server will listen to.
+    * You can choose to change the HTTP_PORT variable (default 80).  Please keep in mind that this port is the one inside the container, so it's a beter idea if you don't change it.
+1. Clone the `.env.dist` file into `.env` and customize.
+    * You can customize your ports:
+        * HTTP_PORT: published port of the server.  If you want your server to listen to a different port, this is the configuration that you need to change.
+        * MONGO_PORT: published port for MongoDB
+    * You can customize your DB settings (they need to be the same as in the `aesirx-1stparty.env` file).
+        * MONGO_INITDB_ROOT_USERNAME
+        * MONGO_INITDB_ROOT_PASSWORD
+        * MONGO_INITDB_DATABASE
 1. Execute `docker compose up -d` to run the full setup, including the MongoDB server.
