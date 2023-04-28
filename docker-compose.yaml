@@ -15,7 +15,6 @@ services:
 
   aesirx-analytics:
     image: aesirxio/analytics-1stparty:develop
-    platform: linux/amd64
     restart: always
     pull_policy: always
     volumes:
