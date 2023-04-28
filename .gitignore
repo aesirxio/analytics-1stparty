@@ -43,3 +43,8 @@ aesirx-1stparty.env
 
 # Enviroment VS Code settings
 settings.json
+.env
+certs/*
+nginx/logs/*
+data/*
+

@@ -2,18 +2,14 @@ services:
   mongo:
     image: mongo:6
     restart: always
-    ports:
-      - protocol: tcp
-        published: ${MONGO_PORT}
-        target: 27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-aesirx}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-1stparty}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-aesirxanalytics}
     volumes:
-      - type: volume
-        source: mongo
-        target: /data/db
+      - ./data/db:/data/db
+    ports:
+      - ${MONGO_PORT-27017}:27017
     networks:
       - backend
 
@@ -22,32 +18,23 @@ services:
     restart: always
     pull_policy: always
     volumes:
-      - type: bind
-        source: ./aesirx-1stparty.env
-        target: /.env
+      - ./aesirx-1stparty.env:/.env
     networks:
       - backend
-  
+
   nginx:
     image: nginx:alpine
-    restart: always
     ports:
-      - protocol: tcp
-        published: ${HTTP_PORT}
-        target: 80
+      - "${HTTP_PORT-443}:443"
+    restart: always
     volumes:
-      - type: bind
-        source: ./proxy.conf
-        target: /etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+      - ${SSL_CRT-./certs/ssl.crt}:/etc/nginx/ssl.crt
+      - ${SSL_KEY-./certs/ssl.key}:/etc/nginx/ssl.key
     networks:
-      - frontend
       - backend
 
-volumes:
-  mongo: {}
-
 networks:
-  frontend:
-    driver: bridge
   backend:
     driver: bridge
