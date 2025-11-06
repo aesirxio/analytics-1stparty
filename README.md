@@ -1,10 +1,10 @@
-# 1st party server for AesirX Analytics
+# 1st party server for AesirX Standalone CMP
 
 ## What is this
 
-This is your own 1st party server for storing analytics of your websites, thanks to [AesirX Analytics](https://analytics.aesirx.io).
+This is your own 1st party server for storing consent of your websites, thanks to [AesirX Standalone CMP](https://analytics.aesirx.io).
 
-Technically, will need Docker Compose for running the [AesirX 1st Party Server](https://hub.docker.com/r/aesirxio/analytics-1stparty) Docker image, that will store your website analytics data in a MongoDB server (included in the Docker Compose file).
+Technically, will need Docker Compose for running the [AesirX 1st Party Server](https://hub.docker.com/r/aesirxio/analytics-1stparty) Docker image, that will store your website consent data in a MongoDB server (included in the Docker Compose file).
 
 ## Technical requirements
 
@@ -13,7 +13,7 @@ Technically, will need Docker Compose for running the [AesirX 1st Party Server](
 
 ### Optional technical requirements
 
-You can also specify your own MongoDB server for storing analytics.  MongoDB 6.x is required.
+You can also specify your own MongoDB server for storing consent.  MongoDB 6.x is required.
 
 ## Instructions for setting up
 
