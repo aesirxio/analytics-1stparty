@@ -14,24 +14,11 @@ services:
       - backend
 
   aesirx-analytics:
-    image: aesirxio/analytics-1stparty:develop
+    image: aesirxio/analytics-1stparty:cmp
     restart: always
     pull_policy: always
     volumes:
       - ./aesirx-1stparty.env:/.env
-    networks:
-      - backend
-
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "${HTTP_PORT-443}:443"
-    restart: always
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/logs:/var/log/nginx
-      - ${SSL_CRT-./certs/ssl.crt}:/etc/nginx/ssl.crt
-      - ${SSL_KEY-./certs/ssl.key}:/etc/nginx/ssl.key
     networks:
       - backend
 
