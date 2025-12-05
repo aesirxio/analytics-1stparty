@@ -14,7 +14,7 @@ services:
       - backend
 
   aesirx-analytics:
-    image: aesirxio/analytics-1stparty:develop
+    image: aesirxio/analytics-1stparty:analytics
     restart: always
     pull_policy: always
     volumes:
